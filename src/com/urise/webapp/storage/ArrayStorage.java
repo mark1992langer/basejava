@@ -15,7 +15,7 @@ public class ArrayStorage {
     private int size;
     private int resumeIndex;
     private Resume oldResume;
-    private  Resume updateResume = new Resume();
+    private Resume updateResume = new Resume();
 
     public void clear() {
         Arrays.fill(storage, 0, size, null);
@@ -35,11 +35,11 @@ public class ArrayStorage {
 
     public void save(Resume r) {
         resumeIndex = getIndex(r.getUuid());
-        if(size >= storage.length){
+        if (size >= storage.length) {
             System.out.println("the base is full!");
-        }else if (resumeIndex != -1){
+        } else if (resumeIndex != -1) {
             System.out.println("resume:" + r.getUuid() + " has already!");
-        }else {
+        } else {
             storage[size] = r;
             size++;
         }
@@ -79,7 +79,9 @@ public class ArrayStorage {
 
     public int getIndex(String uuid) {
         for (int i = 0; i < size; i++) {
-            if (storage[i].getUuid().equals(uuid)) return i;
+            if (storage[i].getUuid().equals(uuid)) {
+                return i;
+            }
         }
         return -1;
     }
