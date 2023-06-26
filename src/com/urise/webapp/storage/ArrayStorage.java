@@ -8,13 +8,7 @@ import java.util.Arrays;
  * Array based storage for Resumes
  */
 
-public class ArrayStorage {
-    private static final int STORAGE_LIMIT = 10000;
-    private final Resume[] storage = new Resume[STORAGE_LIMIT];
-
-    private int size;
-    private int index;
-
+public class ArrayStorage extends AbstractArrayStorage{
 
     public void clear() {
         Arrays.fill(storage, 0, size, null);
@@ -32,7 +26,7 @@ public class ArrayStorage {
 
     public void save(Resume r) {
         index = getIndex(r.getUuid());
-        if (size == storage.length) {
+        if (size == STORAGE_LIMIT) {
             System.out.println("storage overflow!");
         } else if (index != -1) {
             System.out.println("resume:" + r.getUuid() + " has already!");
@@ -68,10 +62,6 @@ public class ArrayStorage {
      */
     public Resume[] getAll() {
         return Arrays.copyOfRange(storage, 0, size);
-    }
-
-    public int size() {
-        return size;
     }
 
     private int getIndex(String uuid) {
