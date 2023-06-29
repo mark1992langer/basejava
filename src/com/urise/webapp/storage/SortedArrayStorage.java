@@ -18,9 +18,21 @@ public class SortedArrayStorage extends AbstractArrayStorage {
             size++;
             if (size > 1 || index < 0) {
                 index = Math.abs(index) - 1;
-                System.arraycopy(storage, index, storage, index +1, size-index);
+                System.arraycopy(storage, index, storage, index + 1, size - index);
                 storage[index] = r;
             }
+        }
+    }
+
+    @Override
+    public void delete(String uuid) {
+        index = getIndex(uuid);
+        if (index > -1) {
+            System.arraycopy(storage, index + 1, storage, index, size - index);
+            storage[size - 1] = null;
+            size--;
+        } else {
+            System.out.println("resume:" + uuid + " not found!");
         }
     }
 
