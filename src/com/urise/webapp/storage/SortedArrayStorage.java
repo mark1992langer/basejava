@@ -11,16 +11,13 @@ public class SortedArrayStorage extends AbstractArrayStorage {
         index = getIndex(r.getUuid());
         if (size == STORAGE_LIMIT) {
             System.out.println("storage overflow!");
-        } else if (index > 0) {
+        } else if (index > -1) {
             System.out.println("resume:" + r.getUuid() + " has already!");
         } else {
-            storage[size] = r;
+            index = Math.abs(index) - 1;
+            System.arraycopy(storage, index, storage, index + 1, size - index);
+            storage[index] = r;
             size++;
-            if (size > 1) {
-                index = Math.abs(index) - 1;
-                System.arraycopy(storage, index, storage, index + 1, size - index);
-                storage[index] = r;
-            }
         }
     }
 
