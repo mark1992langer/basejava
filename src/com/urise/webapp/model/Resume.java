@@ -41,3 +41,4 @@ public class Resume implements Comparable<Resume>{
         return uuid.compareTo(o.uuid);
     }
 }
+

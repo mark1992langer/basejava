@@ -15,12 +15,12 @@ public abstract class AbstractArrayStorage implements Storage {
     protected int size;
     protected int index;
 
-    public void clear() {
+    public final void clear() {
         Arrays.fill(storage, 0, size, null);
         size = 0;
     }
 
-    public void update(Resume r) {
+    public final void update(Resume r) {
         index = getIndex(r.getUuid());
         if (index != -1) {
             storage[index] = r;
@@ -31,7 +31,7 @@ public abstract class AbstractArrayStorage implements Storage {
 
     public abstract void save(Resume r);
 
-    public void delete(String uuid) {
+    public final void delete(String uuid) {
         index = getIndex(uuid);
         if (index != -1) {
             storage[index] = storage[size - 1];
@@ -42,7 +42,7 @@ public abstract class AbstractArrayStorage implements Storage {
         }
     }
 
-    public Resume get(String uuid) {
+    public final Resume get(String uuid) {
         index = getIndex(uuid);
         if (index != -1) {
             return storage[index];
@@ -52,11 +52,11 @@ public abstract class AbstractArrayStorage implements Storage {
         return null;
     }
 
-    public Resume[] getAll() {
+    public final Resume[] getAll() {
         return Arrays.copyOfRange(storage, 0, size);
     }
 
-    public int size() {
+    public final int size() {
         return size;
     }
 
