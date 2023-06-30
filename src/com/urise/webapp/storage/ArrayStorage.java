@@ -9,12 +9,12 @@ import com.urise.webapp.model.Resume;
 public class ArrayStorage extends AbstractArrayStorage {
 
     @Override
-    public void saveResume(Resume r) {
+    protected void saveResume(Resume r) {
         storage[size] = r;
     }
 
     @Override
-    public void deleteResume(String uuid) {
+    protected void deleteResume(String uuid) {
         storage[index] = storage[size - 1];
     }
 
