@@ -103,7 +103,7 @@ public abstract class AbstractArrayStorageTest {
     }
 
     @Test(expected = ExistStorageException.class)
-    public void saveException() {
+    public void saveExist() {
         storage.save(RESUME_1);
     }
 
