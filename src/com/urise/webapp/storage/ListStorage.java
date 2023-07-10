@@ -13,6 +13,24 @@ public class ListStorage extends AbstractStorage {
         list.clear();
     }
 
+
+
+    @Override
+    public Resume[] getAll() {
+        return list.toArray(new Resume[size()]);
+    }
+
+    @Override
+    public int size() {
+        return list.size();
+    }
+
+    @Override
+    protected int getIndex(String uuid) {
+        Resume searchKey = new Resume(uuid);
+        return list.lastIndexOf(searchKey);
+    }
+
     @Override
     protected void  updateResume(Resume r, int index){
         list.set(index, r);
@@ -32,22 +50,4 @@ public class ListStorage extends AbstractStorage {
     protected Resume get(int index){
         return list.get(index);
     }
-
-    @Override
-    public Resume[] getAll() {
-        return list.toArray(new Resume[size()]);
-    }
-
-    @Override
-    public int size() {
-        return list.size();
-    }
-
-    @Override
-    protected int getIndex(String uuid) {
-        Resume searchKey = new Resume(uuid);
-        return list.lastIndexOf(searchKey);
-    }
-
-
 }
