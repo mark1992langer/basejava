@@ -10,9 +10,9 @@ import com.urise.webapp.storage.Storage;
  * Test for your com.urise.webapp.storage.ArrayStorage implementation
  */
 public class MainTestArrayStorage {
-    private static final Storage ARRAY_STORAGE7 = new ArrayStorage();
-    private static final Storage ARRAY_STORAGE = new SortedArrayStorage();
-    private static final Storage ARRAY_STORAGE0 = new ListStorage();
+    private static final Storage ARRAY_STORAGE2 = new ArrayStorage();
+    private static final Storage ARRAY_STORAGE1 = new SortedArrayStorage();
+    private static final Storage ARRAY_STORAGE = new ListStorage();
     public static void main(String[] args) {
         final Resume r1 = new Resume("uuid1");
         //r1.setUuid("uuid1");
