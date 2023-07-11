@@ -1,22 +1,24 @@
 package com.urise.webapp;
 
 import com.urise.webapp.model.Resume;
+import com.urise.webapp.storage.ArrayStorage;
 import com.urise.webapp.storage.ListStorage;
+import com.urise.webapp.storage.SortedArrayStorage;
 import com.urise.webapp.storage.Storage;
 
 /**
  * Test for your com.urise.webapp.storage.ArrayStorage implementation
  */
 public class MainTestArrayStorage {
-    //private static final Storage ARRAY_STORAGE = new ArrayStorage();
-    //private static final Storage ARRAY_STORAGE = new SortedArrayStorage();
-    private static final Storage ARRAY_STORAGE = new ListStorage();
+    private static final Storage ARRAY_STORAGE7 = new ArrayStorage();
+    private static final Storage ARRAY_STORAGE = new SortedArrayStorage();
+    private static final Storage ARRAY_STORAGE0 = new ListStorage();
     public static void main(String[] args) {
         final Resume r1 = new Resume("uuid1");
         //r1.setUuid("uuid1");
-        final Resume r2 = new Resume("uuid3");
+        final Resume r2 = new Resume("uuid2");
         //r2.setUuid("uuid3");
-        final Resume r3 = new Resume("uuid2");
+        final Resume r3 = new Resume("uuid3");
         //r3.setUuid("uuid2");
 
         ARRAY_STORAGE.save(r1);
@@ -33,7 +35,7 @@ public class MainTestArrayStorage {
         printAll();
         ARRAY_STORAGE.update(r2);
         printAll();
-        ARRAY_STORAGE.delete(r1.getUuid());
+        ARRAY_STORAGE.delete(r2.getUuid());
         printAll();
         ARRAY_STORAGE.clear();
         printAll();
