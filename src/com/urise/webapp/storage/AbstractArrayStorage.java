@@ -4,6 +4,7 @@ import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
+import java.util.List;
 
 
 public abstract class AbstractArrayStorage extends AbstractStorage {
@@ -19,8 +20,8 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    public final Resume[] getAll() {
-        return Arrays.copyOfRange(storage, 0, size);
+    public final List<Resume> doGetAll() {
+        return Arrays.asList(Arrays.copyOfRange(storage, 0, size));
     }
 
     @Override
@@ -30,7 +31,7 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
 
     @Override
     protected void doUpdate(Resume r, Object searchKey) {
-        storage[(Integer)searchKey] = r;
+        storage[(Integer) searchKey] = r;
     }
 
     @Override
@@ -38,29 +39,30 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         if (size == STORAGE_LIMIT) {
             throw new StorageException("Storage overflow", r.getUuid());
         } else {
-            saveResume(r, (Integer)searchKey);
+            saveResume(r, (Integer) searchKey);
             size++;
         }
     }
 
     @Override
     protected void doDelete(Object searchKey) {
-        deleteResume((Integer)searchKey);
+        deleteResume((Integer) searchKey);
         storage[size - 1] = null;
         size--;
     }
 
     @Override
     protected Resume doGet(Object searchKey) {
-        return storage[(Integer)searchKey];
+        return storage[(Integer) searchKey];
     }
 
     @Override
-    protected boolean isExist(Object obj) {
-        return (Integer) obj >= 0;
+    protected boolean isExist(Object searchKey) {
+        return (Integer) searchKey >= 0;
     }
 
     protected abstract void saveResume(Resume r, int index);
+
     protected abstract void deleteResume(int index);
 
 }

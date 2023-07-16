@@ -7,16 +7,18 @@ import com.urise.webapp.storage.*;
  * Test for your com.urise.webapp.storage.ArrayStorage implementation
  */
 public class MainTestArrayStorage {
-    private static final Storage ARRAY_STORAGE2 = new ArrayStorage();
+    private static final Storage ARRAY_STORAGE = new ArrayStorage();
     private static final Storage ARRAY_STORAGE1 = new SortedArrayStorage();
     private static final Storage ARRAY_STORAGE0 = new ListStorage();
-    private static final Storage ARRAY_STORAGE = new MapStorage();
+    private static final Storage ARRAY_STORAGE2 = new MapStorage();
+    private static final Storage ARRAY_STORAGE3 = new MapResumeStorage();
+
     public static void main(String[] args) {
-        final Resume r1 = new Resume("uuid1");
+        final Resume r1 = new Resume("Mark", "Mark Gabrilovich");
         //r1.setUuid("uuid1");
-        final Resume r2 = new Resume("uuid2");
+        final Resume r2 = new Resume("Nadezhda", "Nadezhda Gabrilovich");
         //r2.setUuid("uuid3");
-        final Resume r3 = new Resume("uuid3");
+        final Resume r3 = new Resume("Andrei", "Andrei Semenov");
         //r3.setUuid("uuid2");
 
         ARRAY_STORAGE.save(r1);
@@ -24,11 +26,10 @@ public class MainTestArrayStorage {
         ARRAY_STORAGE.save(r3);
 
 
-
         System.out.println("Get r1: " + ARRAY_STORAGE.get(r1.getUuid()));
         System.out.println("Size: " + ARRAY_STORAGE.size());
 
-        System.out.println("Get uuid2: " + ARRAY_STORAGE.get("uuid2"));
+        System.out.println("Get uuid2: " + ARRAY_STORAGE.get("Nadezhda"));
 
         printAll();
         ARRAY_STORAGE.update(r2);
@@ -43,7 +44,7 @@ public class MainTestArrayStorage {
 
     static void printAll() {
         System.out.println("\nGet All");
-        for (Resume r : ARRAY_STORAGE.getAll()) {
+        for (Resume r : ARRAY_STORAGE.getAllSorted()) {
             System.out.println(r);
         }
     }
