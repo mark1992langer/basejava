@@ -6,12 +6,11 @@ import java.util.UUID;
 /**
  * Initial resume class
  */
-public class Resume implements Comparable<Resume> {
+public class Resume implements Comparable<Resume>{
 
     private final String uuid;
 
     private final String fullName;
-
 
     public Resume(String fullName) {
         this(UUID.randomUUID().toString(), fullName);
@@ -50,6 +49,10 @@ public class Resume implements Comparable<Resume> {
         int result = uuid.hashCode();
         result = 31 * result + fullName.hashCode();
         return result;
+    }
+
+    public String getFullName() {
+        return fullName;
     }
 
     @Override
