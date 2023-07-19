@@ -8,10 +8,11 @@ import java.util.List;
 
 
 public abstract class AbstractArrayStorage extends AbstractStorage {
-    protected static final int STORAGE_LIMIT = 10000;
 
+    protected static final int STORAGE_LIMIT = 10000;
     protected Resume[] storage = new Resume[STORAGE_LIMIT];
     protected int size;
+
 
     @Override
     public final void clear() {
@@ -20,14 +21,10 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    public final List<Resume> doGetAll() {
-        return Arrays.asList(Arrays.copyOfRange(storage, 0, size));
-    }
-
-    @Override
     public final int size() {
         return size;
     }
+
 
     @Override
     protected void doUpdate(Resume r, Object searchKey) {
@@ -57,9 +54,16 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
+    public final List<Resume> doGetAll() {
+        return Arrays.asList(Arrays.copyOfRange(storage, 0, size));
+    }
+
+
+    @Override
     protected boolean isExist(Object searchKey) {
         return (Integer) searchKey >= 0;
     }
+
 
     protected abstract void saveResume(Resume r, int index);
 

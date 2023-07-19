@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 public class MapStorage extends AbstractStorage {
+
     private final Map<String, Resume> storage = new HashMap<>();
+
 
     @Override
     public void clear() {
@@ -16,14 +18,10 @@ public class MapStorage extends AbstractStorage {
     }
 
     @Override
-    public final List<Resume> doGetAll() {
-        return new ArrayList<>(storage.values());
-    }
-
-    @Override
     public int size() {
         return storage.size();
     }
+
 
     @Override
     protected void doUpdate(Resume r, Object searchKey) {
@@ -45,6 +43,12 @@ public class MapStorage extends AbstractStorage {
     protected Resume doGet(Object searchKey) {
         return storage.get((String) searchKey);
     }
+
+    @Override
+    public final List<Resume> doGetAll() {
+        return new ArrayList<>(storage.values());
+    }
+
 
     @Override
     protected Object getSearchKey(String uuid) {

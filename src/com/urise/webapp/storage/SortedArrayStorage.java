@@ -9,6 +9,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
 
     private static final Comparator<Resume> RESUME_COMPARATOR = Comparator.comparing(Resume::getUuid);
 
+
     @Override
     protected void saveResume(Resume r, int index) {
         index = -index - 1;
@@ -20,6 +21,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     protected void deleteResume(int index) {
         System.arraycopy(storage, index + 1, storage, index, size - index);
     }
+
 
     @Override
     protected Integer getSearchKey(String uuid) {

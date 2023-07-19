@@ -6,17 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListStorage extends AbstractStorage {
+
     private final List<Resume> storage = new ArrayList<>();
+
 
     @Override
     public void clear() {
         storage.clear();
-    }
-
-    @Override
-    public final List<Resume> doGetAll() {
-        return new ArrayList<>(storage);
-
     }
 
     @Override
@@ -44,6 +40,12 @@ public class ListStorage extends AbstractStorage {
     @Override
     protected Resume doGet(Object searchKey) {
         return storage.get((Integer) searchKey);
+    }
+
+    @Override
+    public final List<Resume> doGetAll() {
+        return new ArrayList<>(storage);
+
     }
 
 
