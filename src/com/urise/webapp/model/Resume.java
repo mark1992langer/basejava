@@ -9,8 +9,8 @@ import java.util.UUID;
 public class Resume implements Comparable<Resume>{
 
     private final String uuid;
-
     private final String fullName;
+
 
     public Resume(String fullName) {
         this(UUID.randomUUID().toString(), fullName);
@@ -23,8 +23,13 @@ public class Resume implements Comparable<Resume>{
         this.fullName = fullName;
     }
 
+
     public String getUuid() {
         return uuid;
+    }
+
+    public String getFullName() {
+        return fullName;
     }
 
 
@@ -49,10 +54,6 @@ public class Resume implements Comparable<Resume>{
         int result = uuid.hashCode();
         result = 31 * result + fullName.hashCode();
         return result;
-    }
-
-    public String getFullName() {
-        return fullName;
     }
 
     @Override
