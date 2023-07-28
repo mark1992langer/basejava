@@ -4,20 +4,23 @@ import java.io.File;
 
 public class MainFile {
     public static void main(String[] args) {
-        File dir = new File("src");
+        File dir = new File("C:\\Users\\Марк\\basejava");
         dirRecursion(dir);
     }
 
     public static void dirRecursion(File dir) {
-        if(dir.isDirectory()){
+        if (dir.isDirectory()) {
             File[] files = dir.listFiles();
-            assert files != null;
-            for (File file : files) {
-                if(file.isFile()){
-                    System.out.println(file + " hi!");
-                }
-                if(file.isDirectory()){
-                    dirRecursion(file);
+            if(files != null) {
+                for (File file : files) {
+                    if (file.isFile()) {
+                        if (file.getName().endsWith(".java")) {
+                            System.out.println(file.getName());
+                        }
+                    }
+                    if (file.isDirectory()) {
+                        dirRecursion(file);
+                    }
                 }
             }
         }
