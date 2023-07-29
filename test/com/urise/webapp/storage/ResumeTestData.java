@@ -2,6 +2,7 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.*;
 
+import java.time.Month;
 import java.util.Objects;
 
 public class ResumeTestData {
@@ -27,7 +28,26 @@ public class ResumeTestData {
         resume.setSection(SectionType.ACHIEVEMENT, new ListSection("Организация команды","Разработка Web " +
                 "приложения","Реализация я Rich Internet Application","Сбор статистики сервисов"));
         resume.setSection(SectionType.QUALIFICATIONS, new ListSection("Java","Scala","DB","JavaScript"));
-        resume.setSection(SectionType.EXPERIENCE, new OrganizationSection(new Organization("q","qq",new Period())));
+        resume.setSection(SectionType.EXPERIENCE,
+                new OrganizationSection(
+                        new Organization("Alcatel","http://www.alcatel.ru/",
+                                new Period(2000, Month.JANUARY, 10, 2010,Month.APRIL,
+                                        18, "Java junior", "java test"),
+                                new Period(2010, Month.AUGUST, 1, 2019, Month.APRIL,
+                                        23,"engineer"," java test"))));
+        resume.setSection(SectionType.EDUCATION,
+                new OrganizationSection(
+                        new Organization("Alcatel","http://www.alcatel.ru/",
+                                new Period(2000, Month.JANUARY, 10, 2010,Month.APRIL,
+                                        18, "Java junior", "java test"),
+                                new Period(2010, Month.AUGUST, 1, 2019, Month.APRIL,
+                                        23,"engineer"," java test"))));
+        resume.setSection(SectionType.EDUCATION,
+                new OrganizationSection(
+                        new Organization("Alcatel","http://www.alcatel.ru/",
+                                new Period(2000, Month.JANUARY, 10, 2010,Month.APRIL,
+                                        18, "Java junior", "java test"),
+                                new Period(2010, Month.AUGUST, 1,"engineer"," java test"))));
         return resume;
     }
 }

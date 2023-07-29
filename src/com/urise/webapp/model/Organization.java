@@ -1,5 +1,6 @@
 package com.urise.webapp.model;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,6 +9,10 @@ public class Organization {
     private final String name;
     private final String website;
     private final List<Period> period;
+
+    public Organization(String name, String website, Period... args) {
+        this(name, website, Arrays.asList(args));
+    }
 
     public Organization(String name, String website, List<Period> period) {
         Objects.requireNonNull(name);

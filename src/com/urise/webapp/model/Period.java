@@ -1,7 +1,11 @@
 package com.urise.webapp.model;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.Objects;
+
+import static java.time.LocalDate.now;
+import static java.time.LocalDate.of;
 
 public class Period {
 
@@ -9,6 +13,15 @@ public class Period {
     private final LocalDate endDate;
     private final String title;
     private final String description;
+
+    public Period(int startYear, Month startMonth, int startDay, String title, String description) {
+        this(of(startYear, startMonth, startDay), now(), title, description);
+    }
+
+    public Period(int startYear, Month startMonth, int startDay, int endYear,
+                  Month endMonth, int endDay, String title, String description) {
+        this(of(startYear, startMonth, startDay), of(endYear, endMonth, endDay), title, description);
+    }
 
     public Period(LocalDate startDate, LocalDate endDate, String title, String description) {
         Objects.requireNonNull(startDate);
@@ -30,6 +43,10 @@ public class Period {
 
     public String getTitle() {
         return title;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     @Override
@@ -56,11 +73,7 @@ public class Period {
 
     @Override
     public String toString() {
-        return "Period{" +
-                "startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+        return "Period{" + startDate + " - " + endDate +
+                " ( " + title  + " ) " + description + '}';
     }
 }

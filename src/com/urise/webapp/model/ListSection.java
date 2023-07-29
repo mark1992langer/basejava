@@ -7,7 +7,7 @@ import java.util.Objects;
 public class ListSection extends Section {
     private final List<String> list;
 
-    public ListSection(String... args){
+    public ListSection(String... args) {
         this(Arrays.asList(args));
     }
 

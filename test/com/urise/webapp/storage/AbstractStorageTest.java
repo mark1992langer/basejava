@@ -2,6 +2,7 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.NotExistStorageException;
+import com.urise.webapp.model.ContactType;
 import com.urise.webapp.model.Resume;
 import com.urise.webapp.model.SectionType;
 import org.junit.Before;
@@ -21,11 +22,10 @@ public abstract class AbstractStorageTest {
     private static final String UUID_2 = "uuid2";
     private static final String UUID_3 = "uuid3";
     private static final String UUID_4 = "uuid4";
-    private static final Resume RESUME_1 = new Resume(UUID_1, "uuid1");
-    private static final Resume RESUME_2 = new Resume(UUID_2, "uuid2");
-    private static final Resume RESUME_3 = new Resume(UUID_3, "uuid3");
+    private static final Resume RESUME_1 = ResumeTestData.resumeGenerate(UUID_1, "uuid1");
+    private static final Resume RESUME_2 = ResumeTestData.resumeGenerate(UUID_2, "uuid2");
+    private static final Resume RESUME_3 = ResumeTestData.resumeGenerate(UUID_3, "uuid3");
     private static final Resume RESUME_4 = new Resume(UUID_4, "uuid4");
-    private static final Resume RESUME_5 =  ResumeTestData.resumeGenerate("mark", " markLanger");
 
 
     @Before
@@ -34,7 +34,6 @@ public abstract class AbstractStorageTest {
         storage.save(RESUME_1);
         storage.save(RESUME_2);
         storage.save(RESUME_3);
-        storage.save(RESUME_5);
     }
 
     @Test
@@ -71,8 +70,8 @@ public abstract class AbstractStorageTest {
         assertGetResume(RESUME_1);
         assertGetResume(RESUME_2);
         assertGetResume(RESUME_3);
-        assertGetResume(RESUME_5);
-        System.out.println(RESUME_5.getSection(SectionType.QUALIFICATIONS));
+        System.out.println(RESUME_1.getSection(SectionType.EDUCATION));
+        System.out.println(RESUME_1.getContact(ContactType.HOMEPAGE));
     }
 
     @Test
