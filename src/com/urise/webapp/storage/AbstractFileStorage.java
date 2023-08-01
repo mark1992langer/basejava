@@ -27,12 +27,11 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     @Override
     public void clear() {
         File[] files = directory.listFiles();
-        if (files != null) {
-            for (File file : files) {
-                doDelete(file);
-            }
-        } else {
+        if (files == null) {
             throw new StorageException("IO Error ", null);
+        }
+        for (File file : files) {
+            doDelete(file);
         }
     }
 
@@ -94,12 +93,11 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     protected List<Resume> doGetAll() {
         List<Resume> resumeList = new ArrayList<>();
         File[] files = directory.listFiles();
-        if (files != null) {
-            for (File file : files) {
-                resumeList.add(doGet(file));
-            }
-        } else {
+        if (files == null) {
             throw new StorageException("IO Error", null);
+        }
+        for (File file : files) {
+            resumeList.add(doGet(file));
         }
         return resumeList;
     }
