@@ -8,9 +8,13 @@ import com.urise.webapp.model.SectionType;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
+
 import static org.junit.Assert.*;
 
 public abstract class AbstractStorageTest {
+    protected static final File STORAGE_DIR = new File("C:\\Users\\Марк\\basejava\\storage") ;
+
     protected Storage storage;
 
     protected AbstractStorageTest(Storage storage) {
@@ -46,9 +50,9 @@ public abstract class AbstractStorageTest {
 
     @Test
     public void update() {
-        Resume resume = new Resume(UUID_1, "uuid1");
-        storage.update(resume);
-        assertSame(resume, storage.get(UUID_1));
+        Resume newResume = new Resume(UUID_1, "uuid1");
+        storage.update(newResume);
+        assertTrue(newResume.equals(storage.get(UUID_1)));
     }
 
     @Test
