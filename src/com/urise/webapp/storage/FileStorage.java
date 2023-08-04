@@ -28,14 +28,14 @@ public class FileStorage extends AbstractStorage<File> {
 
     @Override
     public void clear() {
-        for (File file : getFiles()) {
+        for (File file : getFileArray()) {
             doDelete(file);
         }
     }
 
     @Override
     public int size() {
-        return getFiles().length;
+        return getFileArray().length;
     }
 
     @Override
@@ -86,13 +86,13 @@ public class FileStorage extends AbstractStorage<File> {
     @Override
     protected List<Resume> doGetAll() {
         List<Resume> resumeList = new ArrayList<>();
-        for (File file : getFiles()) {
+        for (File file : getFileArray()) {
             resumeList.add(doGet(file));
         }
         return resumeList;
     }
 
-    private File[] getFiles() {
+    private File[] getFileArray() {
         File[] files = directory.listFiles();
         if (files == null) {
             throw new StorageException("IO Error ", null);
