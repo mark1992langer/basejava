@@ -1,14 +1,12 @@
 package com.urise.webapp.model;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-@XmlAccessorType(XmlAccessType.FIELD)
+
 public class Organization implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -49,20 +47,13 @@ public class Organization implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Organization that = (Organization) o;
-
-        if (!name.equals(that.name)) return false;
-        if (!website.equals(that.website)) return false;
-        return period.equals(that.period);
+        return Objects.equals(name, that.name) && Objects.equals(website, that.website) && Objects.equals(period, that.period);
     }
 
     @Override
     public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + website.hashCode();
-        result = 31 * result + period.hashCode();
-        return result;
+        return Objects.hash(name, website, period);
     }
 
     @Override

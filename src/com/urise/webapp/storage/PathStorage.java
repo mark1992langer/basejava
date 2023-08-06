@@ -1,9 +1,10 @@
 package com.urise.webapp.storage;
 
 import com.urise.webapp.exception.StorageException;
-import com.urise.webapp.model.Resume;
+import com.urise.webapp.model.*;
 import com.urise.webapp.storage.serializer.StreamSerializer;
 
+import javax.xml.bind.annotation.XmlSeeAlso;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 
 public class PathStorage extends AbstractStorage<Path> {
     private final Path directory;
