@@ -19,8 +19,8 @@ public class Resume implements Comparable<Resume>, Serializable {
     private  String uuid;
     private  String fullName;
 
-    private final Map<ContactType, String> contactMap = new EnumMap<>(ContactType.class);
-    private final Map<SectionType, Section> sectionMap = new EnumMap<>(SectionType.class);
+    private final Map<ContactType, String> contacts = new EnumMap<>(ContactType.class);
+    private final Map<SectionType, Section> sections = new EnumMap<>(SectionType.class);
 
     public Resume() {
     }
@@ -46,19 +46,19 @@ public class Resume implements Comparable<Resume>, Serializable {
     }
 
     public Section getSection(SectionType type) {
-        return sectionMap.get(type);
+        return sections.get(type);
     }
 
     public String getContact(ContactType type) {
-        return contactMap.get(type);
+        return contacts.get(type);
     }
 
     public void setContact(ContactType type, String value) {
-        contactMap.put(type, value);
+        contacts.put(type, value);
     }
 
     public void setSection(SectionType type, Section section) {
-        sectionMap.put(type, section);
+        sections.put(type, section);
     }
 
 
@@ -69,18 +69,18 @@ public class Resume implements Comparable<Resume>, Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
+        if (this == o ) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Resume resume = (Resume) o;
         return Objects.equals(uuid, resume.uuid) &&
                 Objects.equals(fullName, resume.fullName) &&
-                Objects.equals(contactMap, resume.contactMap) &&
-                Objects.equals(sectionMap, resume.sectionMap);
+                Objects.equals(contacts, resume.contacts) &&
+                Objects.equals(sections, resume.sections);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uuid, fullName, contactMap, sectionMap);
+        return Objects.hash(uuid, fullName, contacts, sections);
     }
 
     @Override

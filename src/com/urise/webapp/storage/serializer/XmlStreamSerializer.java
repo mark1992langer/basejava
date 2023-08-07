@@ -16,9 +16,6 @@ public class XmlStreamSerializer implements StreamSerializer{
         );
     }
 
-
-
-
     @Override
     public void doWrite(Resume r, OutputStream os) throws IOException {
         try (Writer w = new OutputStreamWriter(os, StandardCharsets.UTF_8)) {
