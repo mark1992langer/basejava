@@ -7,8 +7,6 @@ import java.util.Objects;
 
 public class ResumeTestData {
 
-
-
     ResumeTestData(String uuid, String fullName){
         Objects.requireNonNull(uuid);
         Objects.requireNonNull(fullName);

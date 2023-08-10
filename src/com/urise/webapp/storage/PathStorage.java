@@ -4,7 +4,7 @@ import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.*;
 import com.urise.webapp.storage.serializer.StreamSerializer;
 
-import javax.xml.bind.annotation.XmlSeeAlso;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;

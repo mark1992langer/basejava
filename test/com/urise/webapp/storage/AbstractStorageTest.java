@@ -2,9 +2,7 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.NotExistStorageException;
-import com.urise.webapp.model.ContactType;
 import com.urise.webapp.model.Resume;
-import com.urise.webapp.model.SectionType;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -74,8 +72,6 @@ public abstract class AbstractStorageTest {
         assertGetResume(RESUME_1);
         assertGetResume(RESUME_2);
         assertGetResume(RESUME_3);
-        System.out.println(RESUME_1.getSection(SectionType.EDUCATION));
-        System.out.println(RESUME_1.getContact(ContactType.HOMEPAGE));
     }
 
     @Test
