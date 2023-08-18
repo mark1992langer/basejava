@@ -10,20 +10,20 @@ public class MainStreams {
     private static final List<Integer> integerList = Arrays.asList(1,2,2,2,2);
 
     public static void main(String[] args) {
-        System.out.println(minValue(intArrays));
-        List<Integer> list = oddOrEven(integerList);
+        System.out.println(minValue());
+        List<Integer> list = oddOrEven();
         System.out.println(list);
     }
 
-    private static int minValue(int[] values){
-        return Arrays.stream(values)
+    private static int minValue(){
+        return Arrays.stream(MainStreams.intArrays)
                 .distinct()
                 .sorted()
                 .reduce(0,(l, r) -> l * 10 + r);
     }
 
-    private static List<Integer> oddOrEven(List<Integer> integers) {
-        final Map<Boolean, List<Integer>> oddsAndEvens = integers.stream()
+    private static List<Integer> oddOrEven() {
+        final Map<Boolean, List<Integer>> oddsAndEvens = MainStreams.integerList.stream()
                 .collect(Collectors.partitioningBy(i -> i % 2 == 0));
         return oddsAndEvens.get(oddsAndEvens.get(false).size() % 2 != 0);
     }
