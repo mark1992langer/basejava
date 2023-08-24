@@ -8,21 +8,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class SqlHelper {
+public record SqlHelper(ConnectionFactory connectionFactory) {
 
-    public final ConnectionFactory connectionFactory;
-
-    public SqlHelper(ConnectionFactory connectionFactory){
-        this.connectionFactory = connectionFactory;
-    }
-
-    public <T> T execute(String sql, SqlExecute<T> sqlExecute){
+    public <T> T execute(String sql, SqlExecute<T> sqlExecute) {
         try (Connection conn = connectionFactory.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             return sqlExecute.execute(ps);
         } catch (SQLException e) {
-            if(e instanceof PSQLException){
-                if(e.getSQLState().equals("23505")){
+            if (e instanceof PSQLException) {
+                if (e.getSQLState().equals("23505")) {
                     throw new ExistStorageException(null);
                 }
             }
