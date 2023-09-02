@@ -1,5 +1,6 @@
 package com.urise.webapp.storage;
 
+import com.urise.webapp.model.ContactType;
 import com.urise.webapp.model.Resume;
 
 import java.util.Objects;
@@ -13,13 +14,13 @@ public class ResumeTestData {
 
     public static Resume resumeGenerate (String uuid, String fullName){
         Resume resume = new Resume(uuid, fullName);
-//        resume.setContact(ContactType.TELEPHONE,"+7(921) 855-0482я");
-//        resume.setContact(ContactType.SKYPE,"skype:grigory.kislin");
-//        resume.setContact(ContactType.MAIL, "marklanger92@gmail.com");
-//        resume.setContact(ContactType.LINKEDIN,"https://www.linkedin.com/in/gkislin");
-//        resume.setContact(ContactType.GITHUB,"https://github.com/gkislin");
-//        resume.setContact(ContactType.STACKOVERFLOW,"https://stackoverflow.com/users/548473");
-//        resume.setContact(ContactType.HOMEPAGE,"http://gkislin.ru/");
+        resume.setContact(ContactType.TELEPHONE,"+7(921) 855-0482я");
+        resume.setContact(ContactType.SKYPE,"skype:grigory.kislin");
+        resume.setContact(ContactType.MAIL, "marklanger92@gmail.com");
+        resume.setContact(ContactType.LINKEDIN,"https://www.linkedin.com/in/gkislin");
+        resume.setContact(ContactType.GITHUB,"https://github.com/gkislin");
+        resume.setContact(ContactType.STACKOVERFLOW,"https://stackoverflow.com/users/548473");
+        resume.setContact(ContactType.HOMEPAGE,"http://gkislin.ru/");
 //        resume.setSection(SectionType.PERSONAL, new TextSection("Аналитический склад ума, инициативность."));
 //        resume.setSection(SectionType.OBJECTIVE, new TextSection("Ведущий стажировок обучения по Java."));
 //        resume.setSection(SectionType.ACHIEVEMENT, new ListSection("Организация команды","Разработка Web " +
