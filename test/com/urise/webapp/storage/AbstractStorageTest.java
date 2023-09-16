@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import java.io.File;
 
+import static com.urise.webapp.TestData.*;
 import static org.junit.Assert.*;
 
 public abstract class AbstractStorageTest {
@@ -19,17 +20,6 @@ public abstract class AbstractStorageTest {
     protected AbstractStorageTest(Storage storage) {
         this.storage = storage;
     }
-
-    private static final String UUID_NOT_EXIST = "dummy";
-    private static final String UUID_1 = "uuid1";
-    private static final String UUID_2 = "uuid2";
-    private static final String UUID_3 = "uuid3";
-    private static final String UUID_4 = "uuid4";
-    private static final Resume RESUME_1 = ResumeTestData.resumeGenerate(UUID_1, "uuid1");
-    private static final Resume RESUME_2 = ResumeTestData.resumeGenerate(UUID_2, "uuid2");
-    private static final Resume RESUME_3 = ResumeTestData.resumeGenerate(UUID_3, "uuid3");
-    private static final Resume RESUME_4 = new Resume(UUID_4, "uuid4");
-
 
     @Before
     public void setUp() {
@@ -51,7 +41,7 @@ public abstract class AbstractStorageTest {
     public void update() {
         Resume newResume = new Resume(UUID_1, "uuid1");
         storage.update(newResume);
-        assertTrue(newResume.equals(storage.get(UUID_1)));
+        assertEquals(newResume, storage.get(UUID_1));
     }
 
     @Test
@@ -92,7 +82,7 @@ public abstract class AbstractStorageTest {
 
     @Test(expected = NotExistStorageException.class)
     public void getNotExist() {
-        storage.get(UUID_NOT_EXIST);
+        storage.get("Nova");
     }
 
     @Test(expected = NotExistStorageException.class)
