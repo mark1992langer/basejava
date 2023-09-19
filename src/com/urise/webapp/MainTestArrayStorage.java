@@ -16,7 +16,7 @@ public class MainTestArrayStorage {
 
         final Resume r1 = new Resume("Mark", "Mark Gabrilovich");
         final Resume r2 = new Resume("Nadezhda", "Nadezhda Gabrilovich");
-        final Resume r3 = new Resume("Andrei", "Andrei Semenov");
+        final Resume r3 = new Resume("Andrei", "Andrei Semyonov");
 
         ARRAY_STORAGE.save(r1);
         ARRAY_STORAGE.save(r2);
