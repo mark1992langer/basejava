@@ -18,6 +18,7 @@ import static java.time.LocalDate.of;
 public class Period implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
+    public static final Period EMPTY = new Period();
 
     @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private  LocalDate startDate;
