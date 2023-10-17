@@ -37,7 +37,7 @@ public class TestData {
         RESUME_3.setContact(ContactType.MAIL, "maksim99@gmail.com");
         RESUME_4.setContact(ContactType.MAIL, "andrei0@gmail.com");
 
-        RESUME_1.setSection(SectionType.OBJECTIVE, new TextSection("Java"));
+        RESUME_1.setSection(SectionType.OBJECTIVE, new TextSection("JavaS"));
         RESUME_1.setSection(SectionType.PERSONAL, new TextSection("Аналитический склад ума, инициативность."));
         RESUME_1.setSection(SectionType.ACHIEVEMENT, new ListSection("Mark", "Andrei", "Sasha"));
         RESUME_1.setSection(SectionType.QUALIFICATIONS, new ListSection("Java", "SQL", "JavaScript"));
@@ -46,10 +46,50 @@ public class TestData {
                 new OrganizationSection(
                         new Organization("shemodi","https://vk.com/mlanger92",
                                 new Period(2000, Month.JANUARY, 10, 2010,Month.APRIL,
-                                        18, "Java junior", "java test"),
+                                        18, "title title", "description description description"),
                                 new Period(2010, Month.AUGUST, 1, 2019, Month.APRIL,
                                         23,"engineer"," java test"))));
         RESUME_1.setSection(SectionType.EDUCATION,
+                new OrganizationSection(
+                        new Organization("Alcatel","https://music.yandex.ru/",
+                                new Period(2000, Month.JANUARY, 10, 2010,Month.APRIL,
+                                        18, "Java junior", "java test"),
+                                new Period(2010, Month.AUGUST, 1, 2019, Month.APRIL,
+                                        23,"engineer"," java test"))));
+
+        RESUME_2.setSection(SectionType.OBJECTIVE, new TextSection("Java"));
+        RESUME_2.setSection(SectionType.PERSONAL, new TextSection("Аналитический склад ума, инициативность."));
+        RESUME_2.setSection(SectionType.ACHIEVEMENT, new ListSection("Mark", "Andrei", "Sasha"));
+        RESUME_2.setSection(SectionType.QUALIFICATIONS, new ListSection("Java", "SQL", "JavaScript"));
+
+        RESUME_2.setSection(SectionType.EXPERIENCE,
+                new OrganizationSection(
+                        new Organization("shemodi","https://vk.com/mlanger92",
+                                new Period(2000, Month.JANUARY, 10, 2010,Month.APRIL,
+                                        18, "Java junior", "java test"),
+                                new Period(2010, Month.AUGUST, 1, 2019, Month.APRIL,
+                                        23,"engineer"," java test"))));
+        RESUME_2.setSection(SectionType.EDUCATION,
+                new OrganizationSection(
+                        new Organization("Alcatel","https://music.yandex.ru/",
+                                new Period(2000, Month.JANUARY, 10, 2010,Month.APRIL,
+                                        18, "Java junior", "java test"),
+                                new Period(2010, Month.AUGUST, 1, 2019, Month.APRIL,
+                                        23,"engineer"," java test"))));
+
+        RESUME_3.setSection(SectionType.OBJECTIVE, new TextSection("Java"));
+        RESUME_3.setSection(SectionType.PERSONAL, new TextSection("Аналитический склад ума, инициативность."));
+        RESUME_3.setSection(SectionType.ACHIEVEMENT, new ListSection("Mark", "Andrei", "Sasha"));
+        RESUME_3.setSection(SectionType.QUALIFICATIONS, new ListSection("Java", "SQL", "JavaScript"));
+
+        RESUME_3.setSection(SectionType.EXPERIENCE,
+                new OrganizationSection(
+                        new Organization("shemodi","https://vk.com/mlanger92",
+                                new Period(2000, Month.JANUARY, 10, 2010,Month.APRIL,
+                                        18, "Java junior", "java test"),
+                                new Period(2010, Month.AUGUST, 1, 2019, Month.APRIL,
+                                        23,"engineer"," java test"))));
+        RESUME_3.setSection(SectionType.EDUCATION,
                 new OrganizationSection(
                         new Organization("Alcatel","https://music.yandex.ru/",
                                 new Period(2000, Month.JANUARY, 10, 2010,Month.APRIL,
