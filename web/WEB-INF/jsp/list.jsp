@@ -16,7 +16,6 @@
             <table border="1" cellpadding="8" cellspacing="0">
                 <tr>
                     <th>Имя</th>
-                    <th>Позиция</th>
                     <th>Email</th>
                     <th>Телефон</th>
                     <th></th>
@@ -27,11 +26,9 @@
                     <jsp:useBean id="resume" type="com.urise.webapp.model.Resume"/>
                     <tr>
                         <td><a href="resume?uuid=${resume.uuid}&action=view">${resume.fullName}</a></td>
-                        <td><%=resume.getSection(SectionType.OBJECTIVE)%>
+                        <td><%=ContactType.MAIL.toHtml(resume.getContact(ContactType.MAIL))%>
                         </td>
-                        <td><%=resume.getContact(ContactType.MAIL)%>
-                        </td>
-                        <td><%=resume.getContact(ContactType.TELEPHONE)%>
+                        <td><%=ContactType.TELEPHONE.toHtml(resume.getContact(ContactType.TELEPHONE))%>
                         </td>
                         <td><a href="resume?uuid=${resume.uuid}&action=delete"><img src="img/delete.png"></a></td>
                         <td><a href="resume?uuid=${resume.uuid}&action=edit"><img src="img/pencil.png"></a></td>

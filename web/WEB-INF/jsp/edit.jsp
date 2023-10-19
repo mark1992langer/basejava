@@ -95,7 +95,6 @@
 
         <button type="submit">Сохранить</button>
         <button type="button" onclick="window.history.back()">Отменить</button>
-
     </form>
 </section>
 <jsp:include page="fragments/footer.jsp"/>

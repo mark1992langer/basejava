@@ -29,9 +29,10 @@ public class ResumeServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String uuid = request.getParameter("uuid");
         String fullName = request.getParameter("fullName");
-        final boolean isCreate = (uuid == null || uuid.length() == 0);
-
         Resume r;
+
+        final boolean isCreate = (uuid == null || uuid.length() == 0);
+        final boolean isFullNameEmpty = (fullName.trim().length() == 0 || fullName == null);
         if (isCreate) {
             r = new Resume(fullName);
         } else {
@@ -41,7 +42,7 @@ public class ResumeServlet extends HttpServlet {
 
         for (ContactType type : ContactType.values()) {
             String value = request.getParameter(type.name());
-            if (value != null && !value.trim().isEmpty()) {
+            if (value != null && value.trim().length() != 0) {
                 r.setContact(type, value);
             } else {
                 r.getContacts().remove(type);
@@ -89,14 +90,15 @@ public class ResumeServlet extends HttpServlet {
                 }
             }
         }
-        
+
         if (isCreate) {
-            storage.save(r);
+            if(!isFullNameEmpty){
+                storage.save(r);;
+            }
         } else {
             storage.update(r);
         }
         response.sendRedirect("resume");
-
     }
 
     @Override
@@ -164,4 +166,6 @@ public class ResumeServlet extends HttpServlet {
                 ("view".equals(action) ? "/WEB-INF/jsp/view.jsp" : "/WEB-INF/jsp/edit.jsp")
         ).forward(request, response);
     }
+
+
 }
