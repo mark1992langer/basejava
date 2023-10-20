@@ -1,19 +1,27 @@
 <%@ page import="com.urise.webapp.model.ContactType" %>
-<%@ page import="com.urise.webapp.model.SectionType" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="css/list-stile.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Список всех резюме</title>
 </head>
+
 <body>
-<jsp:include page="fragments/header.jsp"/>
-<section>
+<div class="header-div">
+    <div class="header-div-left">
+        <a href="resume">Управление резюме</a>
+    </div>
+    <div class="header-div-right">
+        <a href="resume?action=add"><img src="img/person-add.png"></a>
+    </div>
+</div>
+<div class="">
+    <section>
     <div>
         <div>
-            <table border="1" cellpadding="8" cellspacing="0">
+            <table cellpadding="8" cellspacing="0">
                 <tr>
                     <th>Имя</th>
                     <th>Email</th>
@@ -32,18 +40,16 @@
                         </td>
                         <td><a href="resume?uuid=${resume.uuid}&action=delete"><img src="img/delete.png"></a></td>
                         <td><a href="resume?uuid=${resume.uuid}&action=edit"><img src="img/pencil.png"></a></td>
-
                     </tr>
                 </c:forEach>
             </table>
         </div>
         <br>
-        <div>
-            <h3>Создать резюме: <a href="resume?action=add"><img src="img/plyus.png"></a> </h3>
-        </div>
     </div>
-
-</section>
-<jsp:include page="fragments/footer.jsp"/>
+    </section>
+</div>
+<div class="footer-div">
+    <a href="https://javaops.ru/reg/basejava">Разработка Web приложения База данных резюме</a>
+</div>
 </body>
 </html>
