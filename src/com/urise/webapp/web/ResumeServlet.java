@@ -32,7 +32,6 @@ public class ResumeServlet extends HttpServlet {
         Resume r;
 
         final boolean isCreate = (uuid == null || uuid.length() == 0);
-        final boolean isFullNameEmpty = (fullName.trim().length() == 0 || fullName == null);
         if (isCreate) {
             r = new Resume(fullName);
         } else {
@@ -62,6 +61,7 @@ public class ResumeServlet extends HttpServlet {
                         break;
                     case ACHIEVEMENT:
                     case QUALIFICATIONS:
+                        String s = value.trim().replaceAll("\\s+"," ");
                         r.setSection(type, new ListSection(value.split("\\n")));
                         break;
                     case EDUCATION:
@@ -92,9 +92,7 @@ public class ResumeServlet extends HttpServlet {
         }
 
         if (isCreate) {
-            if(!isFullNameEmpty){
-                storage.save(r);;
-            }
+                storage.save(r);
         } else {
             storage.update(r);
         }

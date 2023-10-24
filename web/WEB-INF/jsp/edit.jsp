@@ -29,7 +29,7 @@
             <div>
                 <div>Имя:</div>
                 <div>
-                    <input type="text" name="fullName" placeholder="ФИО" value="${resume.fullName}">
+                    <input type="text" name="fullName" placeholder="ФИО" value="${resume.fullName}" required>
                 </div>
                 <div>Контакты:</div>
                 <c:forEach var="type" items="<%=ContactType.values()%>">
@@ -53,9 +53,9 @@
                             <textarea name='${type}'><%=section%></textarea>
                         </c:when>
                         <c:when test="${type=='QUALIFICATIONS' || type=='ACHIEVEMENT'}">
-                            <textarea class="field"
-                              name='${type}'><%=String.join("\n", ((ListSection) section).getList())%>
-                    </textarea>
+                            <textarea name='${type}'>
+                                <%=String.join("\n", ((ListSection) section).getList())%>
+                            </textarea>
                         </c:when>
                         <c:when test="${type=='EXPERIENCE' || type=='EDUCATION'}">
                             <c:forEach var="org" items="<%=((OrganizationSection) section).getExperienceList()%>"
