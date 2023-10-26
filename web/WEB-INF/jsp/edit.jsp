@@ -53,9 +53,7 @@
                             <textarea name='${type}'><%=section%></textarea>
                         </c:when>
                         <c:when test="${type=='QUALIFICATIONS' || type=='ACHIEVEMENT'}">
-                            <textarea name='${type}'>
-                                <%=String.join("\n", ((ListSection) section).getList())%>
-                            </textarea>
+                            <textarea name='${type}'><%=String.join("\n", ((ListSection) section).getList())%></textarea>
                         </c:when>
                         <c:when test="${type=='EXPERIENCE' || type=='EDUCATION'}">
                             <c:forEach var="org" items="<%=((OrganizationSection) section).getExperienceList()%>"
