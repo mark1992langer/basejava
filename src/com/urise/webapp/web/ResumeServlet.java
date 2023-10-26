@@ -25,13 +25,13 @@ public class ResumeServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         String uuid = request.getParameter("uuid");
         String fullName = request.getParameter("fullName");
         Resume r;
 
-        final boolean isCreate = (uuid == null || uuid.length() == 0);
+        final boolean isCreate = (uuid == null || uuid.isEmpty());
         if (isCreate) {
             r = new Resume(fullName);
         } else {
@@ -41,7 +41,7 @@ public class ResumeServlet extends HttpServlet {
 
         for (ContactType type : ContactType.values()) {
             String value = request.getParameter(type.name());
-            if (value != null && value.trim().length() != 0) {
+            if (value != null && !value.trim().isEmpty()) {
                 r.setContact(type, value);
             } else {
                 r.getContacts().remove(type);
@@ -55,17 +55,12 @@ public class ResumeServlet extends HttpServlet {
                 r.getSections().remove(type);
             } else {
                 switch (type) {
-                    case OBJECTIVE:
-                    case PERSONAL:
-                        r.setSection(type, new TextSection(value));
-                        break;
-                    case ACHIEVEMENT:
-                    case QUALIFICATIONS:
-                        String listFormat = value.replaceAll("\r","").replaceAll("\\n\n+", "\n");
+                    case OBJECTIVE, PERSONAL -> r.setSection(type, new TextSection(value));
+                    case ACHIEVEMENT, QUALIFICATIONS -> {
+                        String listFormat = value.trim().replaceAll("\r", "").replaceAll("\\n\n+", "\n");
                         r.setSection(type, new ListSection(listFormat.split("\\n")));
-                        break;
-                    case EDUCATION:
-                    case EXPERIENCE:
+                    }
+                    case EDUCATION, EXPERIENCE -> {
                         List<Organization> org = new ArrayList<>();
                         String[] urls = request.getParameterValues(type.name() + "url");
                         for (int i = 0; i < values.length; i++) {
@@ -86,7 +81,7 @@ public class ResumeServlet extends HttpServlet {
                             }
                         }
                         r.setSection(type, new OrganizationSection(org));
-                        break;
+                    }
                 }
             }
         }
@@ -110,35 +105,29 @@ public class ResumeServlet extends HttpServlet {
         }
         Resume r;
         switch (action) {
-            case "delete":
+            case "delete" -> {
                 storage.delete(uuid);
                 response.sendRedirect("resume");
                 return;
-            case "view":
-                r = storage.get(uuid);
-                break;
-            case "add":
-                r = Resume.EMPTY;
-                break;
-            case "edit":
+            }
+            case "view" -> r = storage.get(uuid);
+            case "add" -> r = Resume.EMPTY;
+            case "edit" -> {
                 r = storage.get(uuid);
                 for (SectionType type : SectionType.values()) {
                     Section section = r.getSection(type);
                     switch (type) {
-                        case OBJECTIVE:
-                        case PERSONAL:
+                        case OBJECTIVE, PERSONAL -> {
                             if (section == null) {
                                 section = TextSection.EMPTY;
                             }
-                            break;
-                        case ACHIEVEMENT:
-                        case QUALIFICATIONS:
+                        }
+                        case ACHIEVEMENT, QUALIFICATIONS -> {
                             if (section == null) {
                                 section = ListSection.EMPTY;
                             }
-                            break;
-                        case EXPERIENCE:
-                        case EDUCATION:
+                        }
+                        case EXPERIENCE, EDUCATION -> {
                             OrganizationSection orgSection = (OrganizationSection) section;
                             List<Organization> empyOrganizationList = new ArrayList<>();
                             empyOrganizationList.add(Organization.EMPTY);
@@ -151,13 +140,12 @@ public class ResumeServlet extends HttpServlet {
                                 }
                             }
                             section = new OrganizationSection(empyOrganizationList);
-                            break;
+                        }
                     }
                     r.setSection(type, section);
                 }
-                break;
-            default:
-                throw new IllegalArgumentException("Action " + action + " is illegal");
+            }
+            default -> throw new IllegalArgumentException("Action " + action + " is illegal");
         }
         request.setAttribute("resume", r);
         request.getRequestDispatcher(
