@@ -1,86 +1,391 @@
+
 body {
-    background: #fcffff;
-    color: #444;
-    font: 100%/30px 'Helvetica Neue', helvetica, arial, sans-serif;
-    text-shadow: 0 1px 0 #fff;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #1A2026;
+}
+
+.section-list::-webkit-scrollbar{
+    width: 16px;
+}
+
+.section-list::-webkit-scrollbar-track {
+    background: #1A2026FF;
+}
+.section-list::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(180deg, #3f9752 0%, #23522d 99%);
+    box-shadow: inset 2px 2px 5px 0;
+}
+
+.header {
+    height: 100px;
+    width: 100%;
+    background: #2A343D;
+    font-family: Open Sans, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 19px;
+}
+.section-list {
+    height: calc(100vh - 200px);
+    width: 100%;
+    margin: 0;
+    overflow: auto;
+}
+
+.footer {
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    font-family: Open Sans, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    display: table;
+    color: #F8F9FA;
+    background: #2A343D;
+    text-align: center;
+}
+
+.footer a {
+    display: inline-block;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    color: #F8F9FA;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.footer a:after {
+    background-color: #ffffff;
+    display: block;
+    content: "";
+    height: 2px;
+    width: 0;
+    -webkit-transition: width .3s ease-in-out;
+    -moz-transition: width .3s ease-in-out;
+    transition: width .3s ease-in-out;
+}
+.footer a:hover:after,
+.footer a:focus:after {
+    width: 100%;
+}
+
+.header a {
+    display: inline-block;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    color: #F8F9FA;
+    position: absolute;
+    left: 50%;
+    top: 5%;
+    transform: translate(-50%, -95%);
+}
+
+.header a:after {
+    background-color: #ffffff;
+    display: block;
+    content: "";
+    height: 2px;
+    width: 0;
+    -webkit-transition: width .3s ease-in-out;
+    -moz-transition: width .3s ease-in-out;
+    transition: width .3s ease-in-out;
+}
+.header a:hover:after,
+.header a:focus:after {
+    width: 100%;
+}
+
+.table-wrapper {
     height: 100%;
+    min-width: 610px;
+    width: 50%;
+    margin: 0 0 0 25%;
+    display: block;
+}
+
+.add-resume {
+    height: 100px;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.add-resume-title {
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    width: 70px;
+    margin-left: 13px;
+    display: block;
+    color: #3F9752;
+}
+
+.resumes-list {
+    width: 100%;
+}
+
+.add-resume-title p:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 table {
-    background: #ffffff;
-    border: 1px #777777;
-    border-collapse: separate;
-    box-shadow: inset 0 1px 0 #090808;
-    font-size: 12px;
-    line-height: 24px;
-    margin: 30px auto;
-    text-align: left;
-    width: 800px;
+    width: 100%;
+    border-spacing: 0;
+    text-align: center;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 }
 
-th {
-    background: linear-gradient(#777, #444);
-    border-left: 1px solid #555;
-    border-right: 1px solid #777;
-    border-top: 1px solid #555;
-    border-bottom: 1px solid #333;
-    box-shadow: inset 0 1px 0 #999;
-    color: #fff;
+.t-header {
+    background-color: #12161a;
     font-weight: bold;
-    padding: 10px 15px;
-    position: relative;
-    text-shadow: 0 1px 0 #000;
+    font-size: 1em;
+    text-align: left;
+    color: #185875;
 }
 
-th:after {
-    background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, .08));
-    content: '';
-    display: block;
-    height: 25%;
-    left: 0;
-    margin: 1px 0 0 0;
-    position: absolute;
-    top: 25%;
-    width: 100%;
-}
-
-td {
-    border: 1px solid #777;
-    padding: 10px 15px;
-    position: relative;
-    transition: all 300ms;
-}
-
-header {
-    background: none repeat scroll 0 0 #ffffff;
-    color: #ffffff;
-    font-size: 20px;
-    width: 100%;
-    height: 30px;
-}
-
-footer {
-    background: none repeat scroll 0 0 #ffffff;
-    color: #ffffff;
-    font-size: 20px;
-    width: 100%;
+tr{
     height: 50px;
+    color: #3F9752;
+}
+td, td a{
+    font-weight: bold;
+    font-size: 1em;
+    text-align: left;
+    color: #3F9752;
+}
+
+.edit-td{
+    text-align: center;
+}
+
+.form-wrapper{
+    font-family: Open Sans, serif;
+    font-style: normal;
+    font-weight: 600;
+    color: #ECEEF2;
+    height: 100%;
+    min-width: 610px;
+    width: 50%;
+    margin: 0 0 0 30%;
+    display: block;
+}
+
+.full-name{
+    font-size: 32px;
+    line-height: 44px;
+    margin-top: 40px;
+}
+
+.contacts{
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 30px;
+    margin-top: 21px;
+}
+
+.contacts a{
+    color: #3F9752;
+}
+
+.sp{
+    width: 100%;
+    min-width: 100%;
+    height: 2px;
+    margin: 40px 0 60px 0;
+    background: #3F9752;
+    border-radius: 10px;
+}
+
+.section{
+    font-weight: 600;
+    font-size: 27px;
+    line-height: 33px;
+    margin: 40px 0 24px
+}
+
+.position{
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+}
+
+.qualities{
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 25px;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 1px;
+    margin-inline-end: 1px;
+    padding-inline-start: 40px;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+li::marker {
+    unicode-bidi: isolate;
+    font-variant-numeric: tabular-nums;
+    text-transform: none;
+    text-indent: 1px !important;
+    text-align: start !important;
+    text-align-last: start !important;
+    color: #3F9752;
+}
+
+.list {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 25px;
+}
+
+.section-wrapper {
+    margin-bottom: 83px;
+}
+
+.job-name , .job-name a{
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 30px;
+    margin-left: 103px;
+    color: #3F9752;
+}
+
+.period-position {
+    display: flex;
+    margin-top: 10px;
+}
+
+.period {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 25px;
+    min-width: 207px;
+}
+
+.positions {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+}
+
+.description {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 25px;
+    margin: 35px 0 0 207px;
+}
+
+.button{
+    background-color: #3F9752;
+    width: 45px;
+    height: 30px;
+    color: #020202;
+    border-radius: 20px;
+}
+.button-div{
+    width: 10%;
+    height: 10%;
+}
+
+.section-edit {
+    font-size: 32px;
+    line-height: 44px;
+    margin: 50px 0 0 0;
+}
+
+input, textarea {
+    height: 60px;
+    width: 100%;
+    background: #2a343d;
+    color: #3F9752;
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.3) inset;
+    padding: 0 25px 0 25px;
+    margin: 20px 0 0 0;
+}
+
+.field {
+    min-height: 60px;
+}
+
+.field-label {
+    font-size: 24px;
+    line-height: 33px;
+    margin: 40px 0 0 0;
+}
+
+textarea {
+    height: 80px;
+    padding-top: 20px;
+}
+
+.date-section {
+    display: flex;
 
 }
 
-.app {
-    min-height: 90%;
+.field-date-l{
+    width: 48%;
 }
 
-.header-div-left{
-    top: 1px;
-    position: absolute;
+.field-date-r{
+    width: 48%;
 }
 
-.header-div-right{
-    right: 20px;
-    position: absolute;
-    top: 1px;
+.field-date-c{
+    width: 4%;
 }
 
+.textarea-description{
+    margin-bottom: 40px;
+}
+
+.button-section{
+    display: flex;
+}
+
+.button-edit{
+    width: 30%;
+    height: 15%;
+    background-color: #3F9752;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.3) inset;
+    color: #090808;
+    font-size: 20px;
+}
+
+.button-edit-escape{
+    width: 30%;
+    height: 15%;
+    background-color: #F38064;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.3) inset;
+    color: #090808;
+    font-size: 20px;
+}
 

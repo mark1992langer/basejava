@@ -12,83 +12,80 @@
     <title>Резюме ${resume.fullName}</title>
 </head>
 <body>
-<div class="header-div">
-    <div class="header-div-left">
-        <a href="resume">Управление резюме</a>
-    </div>
-    <div class="header-div-right">
-        <a href="resume?action=add"><img src="img/person-add.png"></a>
-    </div>
+<div class="header">
+    <a href="resume">Управление резюме</a>
 </div>
-<div class="">
-    <section class="app">
-        <div>${resume.fullName}&nbsp;<a href="resume?uuid=${resume.uuid}&action=edit"><img src="img/pencil.png"></a>
+<div class="section-list">
+    <div class="form-wrapper">
+        <div class="full-name">${resume.fullName}&nbsp;<a href="resume?uuid=${resume.uuid}&action=edit"><img
+                src="img/edit.svg" alt=""></a>
         </div>
-        <div>
+        <div class="contacts">
             <c:forEach var="contactEntry" items="${resume.contacts}">
                 <jsp:useBean id="contactEntry"
                              type="java.util.Map.Entry<com.urise.webapp.model.ContactType, java.lang.String>"/>
                 <%=contactEntry.getKey().toHtml(contactEntry.getValue())%><br/>
             </c:forEach>
         </div>
+        <div class="sp"></div>
+        <c:forEach var="sectionEntry" items="${resume.sections}">
+            <jsp:useBean id="sectionEntry"
+                         type="java.util.Map.Entry<com.urise.webapp.model.SectionType, com.urise.webapp.model.Section>"/>
+            <c:set var="type" value="${sectionEntry.key}"/>
+            <c:set var="section" value="${sectionEntry.value}"/>
+            <jsp:useBean id="section" type="com.urise.webapp.model.Section"/>
 
-        <div>
-            <c:forEach var="sectionEntry" items="${resume.sections}">
-                <jsp:useBean id="sectionEntry"
-                             type="java.util.Map.Entry<com.urise.webapp.model.SectionType, com.urise.webapp.model.Section>"/>
-                <c:set var="type" value="${sectionEntry.key}"/>
-                <c:set var="section" value="${sectionEntry.value}"/>
-                <jsp:useBean id="section" type="com.urise.webapp.model.Section"/>
-
-                <div>${type.title}</div>
-                <c:choose>
-                    <c:when test="${type=='OBJECTIVE'}">
-                        <div>
-                            <%=((TextSection) section).getContent()%>
-                        </div>
-                    </c:when>
-                    <c:when test="${type=='PERSONAL'}">
-                        <div>
-                            <%=((TextSection) section).getContent()%>
-                        </div>
-                    </c:when>
-                    <c:when test="${type=='QUALIFICATIONS' || type=='ACHIEVEMENT'}">
-                        <div>
-                            <ul>
-                                <c:forEach var="item" items="<%=((ListSection) section).getList()%>">
-                                    <li>${item}</li>
-                                </c:forEach>
-                            </ul>
-                        </div>
-                    </c:when>
-                    <c:when test="${type=='EXPERIENCE' || type=='EDUCATION'}">
-                        <c:forEach var="org" items="<%= ((OrganizationSection) section).getExperienceList()%>">
-                            <div>
-                                <c:choose>
-                                    <c:when test="${empty org.website}">
-                                        <div>${org.name}</div>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <div><a href="${org.website}">${org.name}</a></div>
-                                    </c:otherwise>
-                                </c:choose>
-                                <c:forEach var="per" items="${org.period}">
-                                    <jsp:useBean id="per" type="com.urise.webapp.model.Period"/>
-                                    <div>${per.title}</div>
-                                    <div>${per.description}</div>
-                                    <div><%=HtmlUtil.formatDates(per)%>
-                                    </div>
-                                </c:forEach>
-                            </div>
+            <div class="section">${type.title}</div>
+            <c:choose>
+                <c:when test="${type=='OBJECTIVE'}">
+                    <div class="position">
+                        <%=((TextSection) section).getContent()%>
+                    </div>
+                </c:when>
+                <c:when test="${type=='PERSONAL'}">
+                    <div class="qualities">
+                        <%=((TextSection) section).getContent()%>
+                    </div>
+                </c:when>
+                <c:when test="${type=='QUALIFICATIONS' || type=='ACHIEVEMENT'}">
+                    <ul class="list">
+                        <c:forEach var="item" items="<%=((ListSection) section).getList()%>">
+                            <li>${item}</li>
                         </c:forEach>
-                    </c:when>
-                </c:choose>
-            </c:forEach>
+                    </ul>
+                </c:when>
+                <c:when test="${type=='EXPERIENCE' || type=='EDUCATION'}">
+                    <c:forEach var="org" items="<%= ((OrganizationSection) section).getExperienceList()%>">
+                        <div class="section-wrapper">
+                            <c:choose>
+                                <c:when test="${empty org.website}">
+                                    <div class="job-name">${org.name}</div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="job-name"><a href="${org.website}">${org.name}</a></div>
+                                </c:otherwise>
+                            </c:choose>
+                            <c:forEach var="per" items="${org.period}">
+                                <jsp:useBean id="per" type="com.urise.webapp.model.Period"/>
+                                <div class="period-position">
+                                    <div class="period"><%=HtmlUtil.formatDates(per)%>
+                                    </div>
+                                    <div class="positions">${per.title}</div>
+                                </div>
+                                <div class="description">${per.description}</div>
+                            </c:forEach>
+                        </div>
+                    </c:forEach>
+                </c:when>
+            </c:choose>
+        </c:forEach>
+        <div class="sp"></div>
+        <div class="button-div">
+            <button class="button" onclick="window.history.back()">ОК</button>
         </div>
-        <button onclick="window.history.back()">ОК</button>
-    </section>
+    </div>
 </div>
-<div class="footer-div">
+<div class="footer">
     <a href="https://javaops.ru/reg/basejava">Разработка Web приложения База данных резюме</a>
 </div>
 </body>
