@@ -5,7 +5,6 @@ import com.urise.webapp.util.LocalDateAdapter;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Month;
@@ -16,7 +15,7 @@ import static java.time.LocalDate.of;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Period implements Serializable {
-    @Serial
+
     private static final long serialVersionUID = 1L;
     public static final Period EMPTY = new Period();
 

@@ -6,12 +6,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public record SqlHelper(ConnectionFactory connectionFactory) {
+public class SqlHelper {
+    private final ConnectionFactory connectionFactory;
 
-    public <T> T execute(String sql, SqlExecute<T> sqlExecute) {
+    public SqlHelper(ConnectionFactory connectionFactory) {
+        this.connectionFactory = connectionFactory;
+    }
+
+    public void execute(String sql) {
+        execute(sql, PreparedStatement::execute);
+    }
+
+    public <T> T execute(String sql, SqlExecute<T> executor) {
         try (Connection conn = connectionFactory.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            return sqlExecute.execute(ps);
+            return executor.execute(ps);
         } catch (SQLException e) {
             throw ExceptionUtil.convertException(e);
         }
@@ -32,5 +41,32 @@ public record SqlHelper(ConnectionFactory connectionFactory) {
             throw new StorageException(e);
         }
     }
-
 }
+//public record SqlHelper(ConnectionFactory connectionFactory) {
+//
+//    public <T> T execute(String sql, SqlExecute<T> sqlExecute) {
+//        try (Connection conn = connectionFactory.getConnection();
+//             PreparedStatement ps = conn.prepareStatement(sql)) {
+//            return sqlExecute.execute(ps);
+//        } catch (SQLException e) {
+//            throw ExceptionUtil.convertException(e);
+//        }
+//    }
+//
+//    public <T> T transactionalExecute(SqlTransaction<T> executor) {
+//        try (Connection conn = connectionFactory.getConnection()) {
+//            try {
+//                conn.setAutoCommit(false);
+//                T res = executor.execute(conn);
+//                conn.commit();
+//                return res;
+//            } catch (SQLException e) {
+//                conn.rollback();
+//                throw ExceptionUtil.convertException(e);
+//            }
+//        } catch (SQLException e) {
+//            throw new StorageException(e);
+//        }
+//    }
+//
+//}
